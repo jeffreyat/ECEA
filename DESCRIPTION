@@ -1,14 +1,17 @@
 Package: ECEA
-Title: What the Package Does (One Line, Title Case)
+Title: Equivalent Change Enrichment Analysis
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Jeffrey",
+           family = "Thompson",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "jthompson21@kumc.edu",
+           comment = c(ORCID = "0000-0002-0876-2582"))
+Description: Given log2-fold changes for two experiments (or other effect sizes), identifies 
+pathways enriched for equivalent or inverse changes across both experiments.
+License: Apache-2.0
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.1.9000
+Imports:
+  fgsea

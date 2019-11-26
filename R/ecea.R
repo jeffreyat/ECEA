@@ -51,3 +51,21 @@ getECI <- function(smd1, smd2, p1, p2) {
 
   return(eci)
 }
+
+ECEA <- function(gene_sets, eci, min_size=10, max_size=500, num_perm=1000, fdr_cutoff=.2, seed=1) {
+  #' Performs Equivalent Change Enrichment Analysis
+  #'
+  #' @param gene_sets list of gene sets, as in fgsea
+  #' @param eci Named vector of equivalent change indices from getECI()
+  #' @param min_size Minimum size of pathways
+  #' @param max_size Maximum size of pathways
+  #' @param num_perm Number of permutations for permutation test
+  #' @param fdr_cutoff FDR threshold for returned pathways
+  #' @param seed Random seed for permutation test
+  #'
+  require(fgsea)
+
+  set.seed(seed)
+  ecea_res <- fgsea(gene_sets, eci, minSize=min_size, maxSize=max_size, nperm=num_perm)
+  return(ecea_res[ecea_res$padj < fdr_cutoff,])
+}

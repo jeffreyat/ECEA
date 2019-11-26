@@ -7,8 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jthompson21@kumc.edu",
            comment = c(ORCID = "0000-0002-0876-2582"))
-Description: Given log2-fold changes for two experiments (or other effect sizes), identifies 
-pathways enriched for equivalent or inverse changes across both experiments.
+Description: Given log2-fold changes for two experiments (or other effect sizes), identifies pathways enriched for equivalent or inverse changes across both experiments.
 License: Apache-2.0
 Encoding: UTF-8
 LazyData: true

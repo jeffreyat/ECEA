@@ -69,3 +69,45 @@ ECEA <- function(gene_sets, eci, min_size=10, max_size=500, num_perm=1000, fdr_c
   ecea_res <- fgsea(gene_sets, eci, minSize=min_size, maxSize=max_size, nperm=num_perm)
   return(ecea_res[ecea_res$padj < fdr_cutoff,])
 }
+
+getReactome <- function(species = 'human') {
+  #' Gets gene sets for use with ECEA.
+  #'
+  #' @param species currently accepts 'human' or 'mouse'
+  #'
+  require(reactome.db)
+  require(annotate)
+
+  db = ''
+
+  if(species == 'human') {
+    require(org.Hs.eg.db)
+    db <- 'org.Hs.eg'
+  } else if(species == 'mouse') {
+    require(org.Mm.eg.db)
+    db <- 'org.Mm.eg'
+  } else {
+    stop(paste0('Species ', species, ' not supported.'))
+  }
+
+  reactome_sets_full <- as.list(reactomePATHID2EXTID)
+
+  pb <- txtProgressBar(min = 0, max = length(reactome_sets_full), style = 3)
+
+  reactome_sets <- list()
+
+  for(i in 1:length(reactome_sets_full)) {
+    reactome_sets[[i]] <- as.vector(na.omit(getSYMBOL(reactome_sets_full[[i]], data=db)))
+    setTxtProgressBar(pb, i)
+  }
+  close(pb)
+  names(reactome_sets) <- names(reactome_sets_full)
+
+  xx = as.list(reactomePATHID2NAME)
+
+  names(reactome_sets) = xx[names(reactome_sets)]
+
+  reactome_sets <- reactome_sets[lapply(reactome_sets, length)>0]
+
+  return(reactome_sets)
+}

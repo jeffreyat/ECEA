@@ -5,7 +5,7 @@
 \title{Generates equivalent change index, given two vectors of
 effect sizes.}
 \usage{
-getECI(smd1, smd2, p1, p2)
+getECI(smd1, smd2, p1 = NULL, p2 = NULL)
 }
 \arguments{
 \item{smd1}{Named vector of effect sizes for first treatment.}
@@ -17,6 +17,10 @@ getECI(smd1, smd2, p1, p2)
 \item{p2}{Named vector of unadjusted p-values for second treatment.}
 }
 \description{
+If you do not want to adjust the ECI by p-value, then
+do not pass p-values.
+}
+\details{
 NOTE: This function will subset the data to include only the
 entries that are in common to both vectors.
 }

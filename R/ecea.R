@@ -57,7 +57,7 @@ getECI <- function(smd1, smd2, p1=NULL, p2=NULL) {
   return(eci)
 }
 
-ECEA <- function(gene_sets, eci, min_size=10, max_size=500, num_perm=1000, fdr_cutoff=.2, seed=1) {
+doECEA <- function(gene_sets, eci, min_size=10, max_size=500, num_perm=1000, fdr_cutoff=.2, seed=1) {
   #' Performs Equivalent Change Enrichment Analysis
   #'
   #' @param gene_sets list of gene sets, as in fgsea

@@ -1,6 +1,9 @@
-getECI <- function(smd1, smd2, p1, p2) {
+getECI <- function(smd1, smd2, p1=NULL, p2=NULL) {
   #' Generates equivalent change index, given two vectors of
   #' effect sizes.
+  #'
+  #' If you do not want to adjust the ECI by p-value, then
+  #' do not pass p-values.
   #'
   #' NOTE: This function will subset the data to include only the
   #' entries that are in common to both vectors.
@@ -41,13 +44,15 @@ getECI <- function(smd1, smd2, p1, p2) {
   eci <- unlist(eci)
   eci <- setNames(eci, common_vars)
 
-  # Find the max p-value for each variable.
-  p1 <- p1[common_vars]
-  p2 <- p2[common_vars]
-  comb_p = pmax(p1, p2)
+  if(!is.null(p1) & !is.null(p2)) {
+    # Find the max p-value for each variable.
+    p1 <- p1[common_vars]
+    p2 <- p2[common_vars]
+    comb_p = pmax(p1, p2)
 
-  # Adjust the ECI by p-values.
-  eci <- eci * (1 - comb_p)
+    # Adjust the ECI by p-values.
+    eci <- eci * (1 - comb_p)
+  }
 
   return(eci)
 }

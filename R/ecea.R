@@ -110,7 +110,7 @@ getReactome <- function(species = 'human') {
 
   xx = as.list(reactomePATHID2NAME)
 
-  names(reactome_sets) = xx[names(reactome_sets)]
+  names(reactome_sets) <- xx[names(reactome_sets)]
 
   reactome_sets <- reactome_sets[lapply(reactome_sets, length)>0]
 

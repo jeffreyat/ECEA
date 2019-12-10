@@ -12,6 +12,8 @@ getECI <- function(smd1, smd2, p1=NULL, p2=NULL) {
   #' @param smd2 Named vector of effect sizes for second treatment.
   #' @param p1 Named vector of unadjusted p-values for first treatment.
   #' @param p2 Named vector of unadjusted p-values for second treatment.
+  #'
+  #' @export
 
   # Find the common entries in both vectors.
   common_vars <- intersect(names(smd1), names(smd2))
@@ -68,6 +70,8 @@ doECEA <- function(gene_sets, eci, min_size=10, max_size=500, num_perm=1000, fdr
   #' @param fdr_cutoff FDR threshold for returned pathways
   #' @param seed Random seed for permutation test
   #'
+  #' @export
+  #'
   require(fgsea)
 
   set.seed(seed)
@@ -79,6 +83,8 @@ getReactome <- function(species = 'human') {
   #' Gets gene sets for use with ECEA.
   #'
   #' @param species currently accepts 'human' or 'mouse'
+  #'
+  #' @export
   #'
   require(reactome.db)
   require(annotate)

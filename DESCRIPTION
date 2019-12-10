@@ -1,6 +1,6 @@
 Package: ECEA
 Title: Equivalent Change Enrichment Analysis
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
     person(given = "Jeffrey",
            family = "Thompson",

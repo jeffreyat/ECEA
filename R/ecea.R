@@ -79,10 +79,11 @@ doECEA <- function(gene_sets, eci, min_size=10, max_size=500, num_perm=1000, fdr
   return(ecea_res[ecea_res$padj < fdr_cutoff,])
 }
 
-getReactome <- function(species = 'human') {
+getReactome <- function(species = 'human', progress=TRUE) {
   #' Gets gene sets for use with ECEA.
   #'
-  #' @param species currently accepts 'human' or 'mouse'
+  #' @param species character, currently accepts 'human' or 'mouse'
+  #' @param progress Boolean value indicating if progress bar should be shown.
   #'
   #' @export
   #'
@@ -109,7 +110,9 @@ getReactome <- function(species = 'human') {
 
   for(i in 1:length(reactome_sets_full)) {
     reactome_sets[[i]] <- as.vector(na.omit(getSYMBOL(reactome_sets_full[[i]], data=db)))
-    setTxtProgressBar(pb, i)
+    if(prrogress) {
+      setTxtProgressBar(pb, i)
+    }
   }
   close(pb)
   names(reactome_sets) <- names(reactome_sets_full)

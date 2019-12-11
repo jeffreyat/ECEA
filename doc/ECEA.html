@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Jeffrey Thompson" />
+
+<meta name="date" content="2019-12-10" />
+
+<title>ECEA</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">ECEA</h1>
+<h4 class="author">Jeffrey Thompson</h4>
+<h4 class="date">12/10/2019</h4>
+
+
+
+<p>First, load the appropriate packages for your analysis. You at least need ECEA.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(ECEA)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(GEOquery)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(mgu74av2.db)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(limma)</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(fgsea)</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">library</span>(knitr)</a></code></pre></div>
+<p>The following is a simple function to map probe ids to genes.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">mouse_probes_to_symbols &lt;-<span class="st"> </span><span class="cf">function</span>(dat) {</a>
+<a class="sourceLine" id="cb2-2" title="2">  x &lt;-<span class="st"> </span>mgu74av2SYMBOL</a>
+<a class="sourceLine" id="cb2-3" title="3">  mapped_probes &lt;-<span class="st"> </span><span class="kw">mappedkeys</span>(x)</a>
+<a class="sourceLine" id="cb2-4" title="4">  xx &lt;-<span class="st"> </span><span class="kw">as.list</span>(x[mapped_probes])</a>
+<a class="sourceLine" id="cb2-5" title="5">  </a>
+<a class="sourceLine" id="cb2-6" title="6">  genes &lt;-<span class="st"> </span><span class="kw">unlist</span>(xx[<span class="kw">rownames</span>(dat)])</a>
+<a class="sourceLine" id="cb2-7" title="7">  </a>
+<a class="sourceLine" id="cb2-8" title="8">  common &lt;-<span class="st"> </span><span class="kw">intersect</span>(<span class="kw">names</span>(genes), <span class="kw">rownames</span>(dat))</a>
+<a class="sourceLine" id="cb2-9" title="9">  </a>
+<a class="sourceLine" id="cb2-10" title="10">  genes &lt;-<span class="st"> </span>genes[common]</a>
+<a class="sourceLine" id="cb2-11" title="11">  dat &lt;-<span class="st"> </span>dat[common,]</a>
+<a class="sourceLine" id="cb2-12" title="12">  </a>
+<a class="sourceLine" id="cb2-13" title="13">  <span class="kw">message</span>(<span class="st">&quot;Aggregating...&quot;</span>, <span class="dt">appendLF =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb2-14" title="14">  dat &lt;-<span class="st"> </span><span class="kw">aggregate</span>(dat, <span class="dt">by=</span><span class="kw">list</span>(genes), <span class="dt">FUN=</span>median)</a>
+<a class="sourceLine" id="cb2-15" title="15">  <span class="kw">rownames</span>(dat) =<span class="st"> </span>dat[,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb2-16" title="16">  dat &lt;-<span class="st"> </span>dat[,<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb2-17" title="17">  <span class="kw">message</span>(<span class="st">&quot;done!&quot;</span>, <span class="dt">appendLF=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-18" title="18">  </a>
+<a class="sourceLine" id="cb2-19" title="19">  <span class="kw">return</span>(dat)</a>
+<a class="sourceLine" id="cb2-20" title="20">}</a></code></pre></div>
+<p>Next, we are going to load the data from NCBI GEO. Note that these data will not have been normalized like those in the manuscript for ECEA, so the results will be very different! This example is just to show you how to run ECEA, not to recreate the analysis in that paper. We log-transform the data here, but that is not the same thing. We also map the probes to gene symbols.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">gse &lt;-<span class="st"> </span><span class="kw">getGEO</span>(<span class="st">&#39;GSE35378&#39;</span>, <span class="dt">GSEMatrix =</span> T)</a>
+<a class="sourceLine" id="cb3-2" title="2">dat &lt;-<span class="st"> </span><span class="kw">exprs</span>(gse[[<span class="dv">1</span>]])</a>
+<a class="sourceLine" id="cb3-3" title="3">dat &lt;-<span class="st"> </span><span class="kw">log2</span>(dat)</a>
+<a class="sourceLine" id="cb3-4" title="4">dat &lt;-<span class="st"> </span><span class="kw">mouse_probes_to_symbols</span>(dat)</a></code></pre></div>
+<p>Next, we perform a differential expression analysis, using limma.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">des &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb4-2" title="2"></a>
+<a class="sourceLine" id="cb4-3" title="3">mod1 &lt;-<span class="st"> </span><span class="kw">lmFit</span>(dat[,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], des)</a>
+<a class="sourceLine" id="cb4-4" title="4">ebmod1 &lt;-<span class="st"> </span><span class="kw">eBayes</span>(mod1)</a>
+<a class="sourceLine" id="cb4-5" title="5">mod1tt &lt;-<span class="st"> </span><span class="kw">topTable</span>(ebmod1, <span class="dt">coef=</span><span class="dv">2</span>, <span class="dt">number=</span><span class="dv">100000</span>)</a>
+<a class="sourceLine" id="cb4-6" title="6"></a>
+<a class="sourceLine" id="cb4-7" title="7">mod2 &lt;-<span class="st"> </span><span class="kw">lmFit</span>(dat[,<span class="dv">7</span><span class="op">:</span><span class="dv">12</span>], des)</a>
+<a class="sourceLine" id="cb4-8" title="8">ebmod2 &lt;-<span class="st"> </span><span class="kw">eBayes</span>(mod2)</a>
+<a class="sourceLine" id="cb4-9" title="9">mod2tt &lt;-<span class="st"> </span><span class="kw">topTable</span>(ebmod2, <span class="dt">coef=</span><span class="dv">2</span>, <span class="dt">number=</span><span class="dv">100000</span>)</a></code></pre></div>
+<p>Now, we extract the effect sizes (as log2-fold changes) and p-values from the diffferential expression analysis. These are necessary to construct the equivalent change index.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">mod1_fc &lt;-<span class="st"> </span>mod1tt<span class="op">$</span>logFC</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">names</span>(mod1_fc) &lt;-<span class="st"> </span><span class="kw">rownames</span>(mod1tt)</a>
+<a class="sourceLine" id="cb5-3" title="3"></a>
+<a class="sourceLine" id="cb5-4" title="4">mod2_fc &lt;-<span class="st"> </span>mod2tt<span class="op">$</span>logFC</a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="kw">names</span>(mod2_fc) &lt;-<span class="st"> </span><span class="kw">rownames</span>(mod2tt)</a>
+<a class="sourceLine" id="cb5-6" title="6"></a>
+<a class="sourceLine" id="cb5-7" title="7">mod1_p &lt;-<span class="st"> </span>mod1tt<span class="op">$</span>P.Value</a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="kw">names</span>(mod1_p) &lt;-<span class="st"> </span><span class="kw">rownames</span>(mod1tt)</a>
+<a class="sourceLine" id="cb5-9" title="9"></a>
+<a class="sourceLine" id="cb5-10" title="10">mod2_p &lt;-<span class="st"> </span>mod2tt<span class="op">$</span>P.Value</a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="kw">names</span>(mod2_p) &lt;-<span class="st"> </span><span class="kw">rownames</span>(mod2tt)</a></code></pre></div>
+<p>We use these to calculate the ECI.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">eci =<span class="st"> </span><span class="kw">getECI</span>(mod1_fc, mod2_fc, mod1_p, mod2_p)</a></code></pre></div>
+<p>Next, we load gene sets for Reactome pathways.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">reactome_sets =<span class="st"> </span><span class="kw">getReactome</span>(<span class="dt">species =</span> <span class="st">&#39;mouse&#39;</span>, <span class="dt">progress=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Then, we perform ECEA.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">ecea_res =<span class="st"> </span><span class="kw">doECEA</span>(reactome_sets, eci)</a></code></pre></div>
+<p>Finally, we show the results. Remember, these are not valid results! The data were not normalized properly.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">kable</span>(ecea_res[ecea_res<span class="op">$</span>padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">.25</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>])</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">pathway</th>
+<th align="right">pval</th>
+<th align="right">padj</th>
+<th align="right">ES</th>
+<th align="right">NES</th>
+<th align="right">nMoreExtreme</th>
+<th align="right">size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mus musculus: Cytokine Signaling in Immune system</td>
+<td align="right">0.0095465</td>
+<td align="right">0.1036149</td>
+<td align="right">-0.3418175</td>
+<td align="right">-1.310317</td>
+<td align="right">7</td>
+<td align="right">389</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: TCF dependent signaling in response to WNT</td>
+<td align="right">0.0318560</td>
+<td align="right">0.1948550</td>
+<td align="right">-0.3835953</td>
+<td align="right">-1.329617</td>
+<td align="right">22</td>
+<td align="right">125</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Cellular responses to stress</td>
+<td align="right">0.0175000</td>
+<td align="right">0.1557500</td>
+<td align="right">-0.3487070</td>
+<td align="right">-1.303308</td>
+<td align="right">13</td>
+<td align="right">278</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Senescence-Associated Secretory Phenotype (SASP)</td>
+<td align="right">0.0145161</td>
+<td align="right">0.1389178</td>
+<td align="right">-0.5594069</td>
+<td align="right">-1.616337</td>
+<td align="right">8</td>
+<td align="right">36</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Cellular Senescence</td>
+<td align="right">0.0114943</td>
+<td align="right">0.1149425</td>
+<td align="right">-0.4255588</td>
+<td align="right">-1.415622</td>
+<td align="right">7</td>
+<td align="right">91</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Deposition of new CENPA-containing nucleosomes at the centromere</td>
+<td align="right">0.0197044</td>
+<td align="right">0.1654429</td>
+<td align="right">-0.6329282</td>
+<td align="right">-1.582340</td>
+<td align="right">11</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Nucleosome assembly</td>
+<td align="right">0.0197044</td>
+<td align="right">0.1654429</td>
+<td align="right">-0.6329282</td>
+<td align="right">-1.582340</td>
+<td align="right">11</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Synthesis of Leukotrienes (LT) and Eoxins (EX)</td>
+<td align="right">0.0023529</td>
+<td align="right">0.0556041</td>
+<td align="right">0.7238431</td>
+<td align="right">1.732139</td>
+<td align="right">0</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Metabolism of lipids</td>
+<td align="right">0.0180941</td>
+<td align="right">0.1594430</td>
+<td align="right">-0.3351718</td>
+<td align="right">-1.274909</td>
+<td align="right">14</td>
+<td align="right">346</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: PKMTs methylate histone lysines</td>
+<td align="right">0.0195440</td>
+<td align="right">0.1654429</td>
+<td align="right">-0.5923342</td>
+<td align="right">-1.582703</td>
+<td align="right">11</td>
+<td align="right">25</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: DNA Double-Strand Break Repair</td>
+<td align="right">0.0057143</td>
+<td align="right">0.0704253</td>
+<td align="right">-0.4364087</td>
+<td align="right">-1.448579</td>
+<td align="right">3</td>
+<td align="right">87</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Recruitment and ATM-mediated phosphorylation of repair and signaling proteins at DNA double strand breaks</td>
+<td align="right">0.0048780</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.5972705</td>
+<td align="right">-1.699731</td>
+<td align="right">2</td>
+<td align="right">33</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Nonhomologous End-Joining (NHEJ)</td>
+<td align="right">0.0048232</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.6367655</td>
+<td align="right">-1.687846</td>
+<td align="right">2</td>
+<td align="right">24</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: DNA Double Strand Break Response</td>
+<td align="right">0.0032841</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.6097387</td>
+<td align="right">-1.736009</td>
+<td align="right">1</td>
+<td align="right">34</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: The citric acid (TCA) cycle and respiratory electron transport</td>
+<td align="right">0.0028902</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.4910555</td>
+<td align="right">-1.638406</td>
+<td align="right">1</td>
+<td align="right">94</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Respiratory electron transport, ATP synthesis by chemiosmotic coupling, and heat production by uncoupling proteins.</td>
+<td align="right">0.0030628</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5754193</td>
+<td align="right">-1.783900</td>
+<td align="right">1</td>
+<td align="right">54</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Respiratory electron transport</td>
+<td align="right">0.0016026</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.6492328</td>
+<td align="right">-1.912108</td>
+<td align="right">0</td>
+<td align="right">38</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Complex I biogenesis</td>
+<td align="right">0.0049261</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.6095148</td>
+<td align="right">-1.735372</td>
+<td align="right">2</td>
+<td align="right">34</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Aflatoxin activation and detoxification</td>
+<td align="right">0.0232558</td>
+<td align="right">0.1754040</td>
+<td align="right">0.6458953</td>
+<td align="right">1.598406</td>
+<td align="right">9</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: L13a-mediated translational silencing of Ceruloplasmin expression</td>
+<td align="right">0.0028986</td>
+<td align="right">0.0556041</td>
+<td align="right">0.6242356</td>
+<td align="right">2.108735</td>
+<td align="right">0</td>
+<td align="right">58</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Eukaryotic Translation Initiation</td>
+<td align="right">0.0030864</td>
+<td align="right">0.0556041</td>
+<td align="right">0.5941900</td>
+<td align="right">2.053613</td>
+<td align="right">0</td>
+<td align="right">65</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Translation initiation complex formation</td>
+<td align="right">0.0025840</td>
+<td align="right">0.0556041</td>
+<td align="right">0.5924768</td>
+<td align="right">1.894565</td>
+<td align="right">0</td>
+<td align="right">43</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Activation of the mRNA upon binding of the cap-binding complex and eIFs, and subsequent binding to 43S</td>
+<td align="right">0.0025907</td>
+<td align="right">0.0556041</td>
+<td align="right">0.5863679</td>
+<td align="right">1.889605</td>
+<td align="right">0</td>
+<td align="right">44</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Formation of a pool of free 40S subunits</td>
+<td align="right">0.0027174</td>
+<td align="right">0.0556041</td>
+<td align="right">0.6913745</td>
+<td align="right">2.267008</td>
+<td align="right">0</td>
+<td align="right">48</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Formation of the ternary complex, and subsequently, the 43S complex</td>
+<td align="right">0.0026178</td>
+<td align="right">0.0556041</td>
+<td align="right">0.6429749</td>
+<td align="right">1.988895</td>
+<td align="right">0</td>
+<td align="right">36</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Ribosomal scanning and start codon recognition</td>
+<td align="right">0.0025840</td>
+<td align="right">0.0556041</td>
+<td align="right">0.5676219</td>
+<td align="right">1.815086</td>
+<td align="right">0</td>
+<td align="right">43</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: GTP hydrolysis and joining of the 60S ribosomal subunit</td>
+<td align="right">0.0029155</td>
+<td align="right">0.0556041</td>
+<td align="right">0.6064310</td>
+<td align="right">2.060794</td>
+<td align="right">0</td>
+<td align="right">59</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Cap-dependent Translation Initiation</td>
+<td align="right">0.0030864</td>
+<td align="right">0.0556041</td>
+<td align="right">0.5941900</td>
+<td align="right">2.053613</td>
+<td align="right">0</td>
+<td align="right">65</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Translation</td>
+<td align="right">0.0223048</td>
+<td align="right">0.1754040</td>
+<td align="right">0.3343979</td>
+<td align="right">1.303974</td>
+<td align="right">5</td>
+<td align="right">144</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Protein localization</td>
+<td align="right">0.0014793</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5470334</td>
+<td align="right">-1.747172</td>
+<td align="right">0</td>
+<td align="right">68</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Beta-catenin independent WNT signaling</td>
+<td align="right">0.0232221</td>
+<td align="right">0.1754040</td>
+<td align="right">-0.4092781</td>
+<td align="right">-1.376794</td>
+<td align="right">15</td>
+<td align="right">101</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: SRP-dependent cotranslational protein targeting to membrane</td>
+<td align="right">0.0025445</td>
+<td align="right">0.0556041</td>
+<td align="right">0.7035352</td>
+<td align="right">2.233462</td>
+<td align="right">0</td>
+<td align="right">40</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Mitotic Metaphase and Anaphase</td>
+<td align="right">0.0320334</td>
+<td align="right">0.1948550</td>
+<td align="right">-0.3846376</td>
+<td align="right">-1.334778</td>
+<td align="right">22</td>
+<td align="right">126</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Major pathway of rRNA processing in the nucleolus and cytosol</td>
+<td align="right">0.0033113</td>
+<td align="right">0.0556041</td>
+<td align="right">0.5168427</td>
+<td align="right">1.877206</td>
+<td align="right">0</td>
+<td align="right">87</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Mitotic Anaphase</td>
+<td align="right">0.0320334</td>
+<td align="right">0.1948550</td>
+<td align="right">-0.3846376</td>
+<td align="right">-1.334778</td>
+<td align="right">22</td>
+<td align="right">126</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: rRNA processing</td>
+<td align="right">0.0033113</td>
+<td align="right">0.0556041</td>
+<td align="right">0.5168427</td>
+<td align="right">1.877206</td>
+<td align="right">0</td>
+<td align="right">87</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: rRNA processing in the nucleus and cytosol</td>
+<td align="right">0.0033113</td>
+<td align="right">0.0556041</td>
+<td align="right">0.5168427</td>
+<td align="right">1.877206</td>
+<td align="right">0</td>
+<td align="right">87</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Nonsense-Mediated Decay (NMD)</td>
+<td align="right">0.0028409</td>
+<td align="right">0.0556041</td>
+<td align="right">0.5677651</td>
+<td align="right">1.906327</td>
+<td align="right">0</td>
+<td align="right">55</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC)</td>
+<td align="right">0.0025840</td>
+<td align="right">0.0556041</td>
+<td align="right">0.6374677</td>
+<td align="right">2.038432</td>
+<td align="right">0</td>
+<td align="right">43</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Nonsense Mediated Decay (NMD) enhanced by the Exon Junction Complex (EJC)</td>
+<td align="right">0.0028409</td>
+<td align="right">0.0556041</td>
+<td align="right">0.5677651</td>
+<td align="right">1.906327</td>
+<td align="right">0</td>
+<td align="right">55</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Metabolism of amino acids and derivatives</td>
+<td align="right">0.0027027</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.4386046</td>
+<td align="right">-1.555682</td>
+<td align="right">1</td>
+<td align="right">161</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Neddylation</td>
+<td align="right">0.0070522</td>
+<td align="right">0.0804673</td>
+<td align="right">-0.4180999</td>
+<td align="right">-1.438874</td>
+<td align="right">4</td>
+<td align="right">119</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Antigen processing: Ubiquitination &amp; Proteasome degradation</td>
+<td align="right">0.0026918</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.4346664</td>
+<td align="right">-1.535826</td>
+<td align="right">1</td>
+<td align="right">150</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Autophagy</td>
+<td align="right">0.0279001</td>
+<td align="right">0.1939932</td>
+<td align="right">-0.4308701</td>
+<td align="right">-1.400166</td>
+<td align="right">18</td>
+<td align="right">77</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Macroautophagy</td>
+<td align="right">0.0136571</td>
+<td align="right">0.1321172</td>
+<td align="right">-0.4761682</td>
+<td align="right">-1.490787</td>
+<td align="right">8</td>
+<td align="right">59</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Antigen Presentation: Folding, assembly and peptide loading of class I MHC</td>
+<td align="right">0.0283505</td>
+<td align="right">0.1947974</td>
+<td align="right">0.5134950</td>
+<td align="right">1.470027</td>
+<td align="right">10</td>
+<td align="right">25</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Apoptosis induced DNA fragmentation</td>
+<td align="right">0.0238908</td>
+<td align="right">0.1771900</td>
+<td align="right">-0.7016169</td>
+<td align="right">-1.565615</td>
+<td align="right">13</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Toll Like Receptor 4 (TLR4) Cascade</td>
+<td align="right">0.0029326</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.4902420</td>
+<td align="right">-1.587233</td>
+<td align="right">1</td>
+<td align="right">74</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: MyD88:MAL(TIRAP) cascade initiated on plasma membrane</td>
+<td align="right">0.0312989</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.4629770</td>
+<td align="right">-1.413275</td>
+<td align="right">19</td>
+<td align="right">51</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: MyD88-independent TLR4 cascade</td>
+<td align="right">0.0059347</td>
+<td align="right">0.0704253</td>
+<td align="right">-0.4861280</td>
+<td align="right">-1.541762</td>
+<td align="right">3</td>
+<td align="right">64</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Toll Like Receptor 9 (TLR9) Cascade</td>
+<td align="right">0.0185759</td>
+<td align="right">0.1620834</td>
+<td align="right">-0.4767928</td>
+<td align="right">-1.481551</td>
+<td align="right">11</td>
+<td align="right">56</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Toll Like Receptor 10 (TLR10) Cascade</td>
+<td align="right">0.0311042</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.4635685</td>
+<td align="right">-1.412320</td>
+<td align="right">19</td>
+<td align="right">50</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Toll Like Receptor 3 (TLR3) Cascade</td>
+<td align="right">0.0312989</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.4623347</td>
+<td align="right">-1.411315</td>
+<td align="right">19</td>
+<td align="right">51</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Toll Like Receptor 5 (TLR5) Cascade</td>
+<td align="right">0.0311042</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.4635685</td>
+<td align="right">-1.412320</td>
+<td align="right">19</td>
+<td align="right">50</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Toll Like Receptor TLR1:TLR2 Cascade</td>
+<td align="right">0.0312989</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.4629770</td>
+<td align="right">-1.413275</td>
+<td align="right">19</td>
+<td align="right">51</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Toll Like Receptor 7/8 (TLR7/8) Cascade</td>
+<td align="right">0.0229709</td>
+<td align="right">0.1754040</td>
+<td align="right">-0.4755248</td>
+<td align="right">-1.474209</td>
+<td align="right">14</td>
+<td align="right">54</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Toll Like Receptor TLR6:TLR2 Cascade</td>
+<td align="right">0.0312989</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.4629770</td>
+<td align="right">-1.413275</td>
+<td align="right">19</td>
+<td align="right">51</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Toll-like Receptor Cascades</td>
+<td align="right">0.0289017</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.4119387</td>
+<td align="right">-1.374433</td>
+<td align="right">19</td>
+<td align="right">94</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Toll Like Receptor 2 (TLR2) Cascade</td>
+<td align="right">0.0312989</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.4629770</td>
+<td align="right">-1.413275</td>
+<td align="right">19</td>
+<td align="right">51</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Interleukin-1 family signaling</td>
+<td align="right">0.0043478</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.4599922</td>
+<td align="right">-1.507019</td>
+<td align="right">2</td>
+<td align="right">81</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Signaling by Interleukins</td>
+<td align="right">0.0078740</td>
+<td align="right">0.0875984</td>
+<td align="right">-0.3895718</td>
+<td align="right">-1.403438</td>
+<td align="right">5</td>
+<td align="right">194</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Apoptotic execution phase</td>
+<td align="right">0.0227642</td>
+<td align="right">0.1754040</td>
+<td align="right">-0.5073956</td>
+<td align="right">-1.512506</td>
+<td align="right">13</td>
+<td align="right">43</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Interleukin-1 signaling</td>
+<td align="right">0.0219941</td>
+<td align="right">0.1754040</td>
+<td align="right">-0.4403836</td>
+<td align="right">-1.425809</td>
+<td align="right">14</td>
+<td align="right">74</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: TRIF(TICAM1)-mediated TLR4 signaling</td>
+<td align="right">0.0059347</td>
+<td align="right">0.0704253</td>
+<td align="right">-0.4861280</td>
+<td align="right">-1.541762</td>
+<td align="right">3</td>
+<td align="right">64</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: TRAF6 mediated induction of NFkB and MAP kinases upon TLR7/8 or 9 activation</td>
+<td align="right">0.0217729</td>
+<td align="right">0.1754040</td>
+<td align="right">-0.4781311</td>
+<td align="right">-1.469918</td>
+<td align="right">13</td>
+<td align="right">53</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: MyD88 dependent cascade initiated on endosome</td>
+<td align="right">0.0229709</td>
+<td align="right">0.1754040</td>
+<td align="right">-0.4755248</td>
+<td align="right">-1.474209</td>
+<td align="right">14</td>
+<td align="right">54</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: MyD88 cascade initiated on plasma membrane</td>
+<td align="right">0.0311042</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.4635685</td>
+<td align="right">-1.412320</td>
+<td align="right">19</td>
+<td align="right">50</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Interleukin-17 signaling</td>
+<td align="right">0.0311987</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.5035892</td>
+<td align="right">-1.477161</td>
+<td align="right">18</td>
+<td align="right">40</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: MAP kinase activation</td>
+<td align="right">0.0311987</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.5035892</td>
+<td align="right">-1.477161</td>
+<td align="right">18</td>
+<td align="right">40</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Regulation of RAS by GAPs</td>
+<td align="right">0.0015649</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.6188516</td>
+<td align="right">-1.893409</td>
+<td align="right">0</td>
+<td align="right">52</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: RAF/MAP kinase cascade</td>
+<td align="right">0.0040161</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.4043433</td>
+<td align="right">-1.445670</td>
+<td align="right">2</td>
+<td align="right">181</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: MAPK family signaling cascades</td>
+<td align="right">0.0039113</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.3981979</td>
+<td align="right">-1.438523</td>
+<td align="right">2</td>
+<td align="right">202</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: MAPK1/MAPK3 signaling</td>
+<td align="right">0.0039894</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.4012677</td>
+<td align="right">-1.438218</td>
+<td align="right">2</td>
+<td align="right">187</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: FLT3 Signaling</td>
+<td align="right">0.0053262</td>
+<td align="right">0.0667654</td>
+<td align="right">-0.3996265</td>
+<td align="right">-1.434277</td>
+<td align="right">3</td>
+<td align="right">190</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Mitochondrial translation</td>
+<td align="right">0.0029499</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.4960694</td>
+<td align="right">-1.578813</td>
+<td align="right">1</td>
+<td align="right">65</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Mitochondrial translation elongation</td>
+<td align="right">0.0029674</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.4963332</td>
+<td align="right">-1.574129</td>
+<td align="right">1</td>
+<td align="right">64</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Mitochondrial translation termination</td>
+<td align="right">0.0103858</td>
+<td align="right">0.1092312</td>
+<td align="right">-0.4709736</td>
+<td align="right">-1.493700</td>
+<td align="right">6</td>
+<td align="right">64</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Mitochondrial Fatty Acid Beta-Oxidation</td>
+<td align="right">0.0015949</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.7110793</td>
+<td align="right">-1.828588</td>
+<td align="right">0</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Activation of NF-kappaB in B cells</td>
+<td align="right">0.0217729</td>
+<td align="right">0.1754040</td>
+<td align="right">-0.4823710</td>
+<td align="right">-1.482953</td>
+<td align="right">13</td>
+<td align="right">53</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Cross-presentation of soluble exogenous antigens (endosomes)</td>
+<td align="right">0.0048780</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.5625986</td>
+<td align="right">-1.677062</td>
+<td align="right">2</td>
+<td align="right">43</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: APC/C-mediated degradation of cell cycle proteins</td>
+<td align="right">0.0014749</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5362191</td>
+<td align="right">-1.706595</td>
+<td align="right">0</td>
+<td align="right">65</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: APC/C:Cdc20 mediated degradation of Securin</td>
+<td align="right">0.0030769</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5393416</td>
+<td align="right">-1.674481</td>
+<td align="right">1</td>
+<td align="right">55</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: APC/C:Cdh1 mediated degradation of Cdc20 and other APC/C:Cdh1 targeted proteins in late mitosis/early G1</td>
+<td align="right">0.0030441</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5188534</td>
+<td align="right">-1.621771</td>
+<td align="right">1</td>
+<td align="right">58</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Cdc20:Phospho-APC/C mediated degradation of Cyclin A</td>
+<td align="right">0.0030349</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5572266</td>
+<td align="right">-1.744564</td>
+<td align="right">1</td>
+<td align="right">59</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: APC/C:Cdc20 mediated degradation of mitotic proteins</td>
+<td align="right">0.0015083</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5499064</td>
+<td align="right">-1.730019</td>
+<td align="right">0</td>
+<td align="right">61</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Activation of APC/C and APC/C:Cdc20 mediated degradation of mitotic proteins</td>
+<td align="right">0.0015038</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5448200</td>
+<td align="right">-1.718913</td>
+<td align="right">0</td>
+<td align="right">62</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: APC:Cdc20 mediated degradation of cell cycle proteins prior to satisfation of the cell cycle checkpoint</td>
+<td align="right">0.0014948</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5499887</td>
+<td align="right">-1.728854</td>
+<td align="right">0</td>
+<td align="right">60</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: TCR signaling</td>
+<td align="right">0.0289017</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.4211709</td>
+<td align="right">-1.386329</td>
+<td align="right">19</td>
+<td align="right">84</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Downstream TCR signaling</td>
+<td align="right">0.0104322</td>
+<td align="right">0.1092312</td>
+<td align="right">-0.4590588</td>
+<td align="right">-1.464327</td>
+<td align="right">6</td>
+<td align="right">69</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: FCERI mediated NF-kB activation</td>
+<td align="right">0.0134529</td>
+<td align="right">0.1315725</td>
+<td align="right">-0.4839204</td>
+<td align="right">-1.521173</td>
+<td align="right">8</td>
+<td align="right">60</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Autodegradation of the E3 ubiquitin ligase COP1</td>
+<td align="right">0.0048701</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.5592696</td>
+<td align="right">-1.668502</td>
+<td align="right">2</td>
+<td align="right">44</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Regulation of ornithine decarboxylase (ODC)</td>
+<td align="right">0.0032258</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5880026</td>
+<td align="right">-1.755664</td>
+<td align="right">1</td>
+<td align="right">45</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Metabolism of polyamines</td>
+<td align="right">0.0015949</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5866676</td>
+<td align="right">-1.770745</td>
+<td align="right">0</td>
+<td align="right">47</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: PCP/CE pathway</td>
+<td align="right">0.0029240</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.4861587</td>
+<td align="right">-1.569270</td>
+<td align="right">1</td>
+<td align="right">72</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Regulation of mRNA stability by proteins that bind AU-rich elements</td>
+<td align="right">0.0253731</td>
+<td align="right">0.1821136</td>
+<td align="right">-0.4470823</td>
+<td align="right">-1.421037</td>
+<td align="right">16</td>
+<td align="right">66</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Regulation of mitotic cell cycle</td>
+<td align="right">0.0014749</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5362191</td>
+<td align="right">-1.706595</td>
+<td align="right">0</td>
+<td align="right">65</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Asymmetric localization of PCP proteins</td>
+<td align="right">0.0031104</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5548092</td>
+<td align="right">-1.690296</td>
+<td align="right">1</td>
+<td align="right">50</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Degradation of AXIN</td>
+<td align="right">0.0048701</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.5431953</td>
+<td align="right">-1.620546</td>
+<td align="right">2</td>
+<td align="right">44</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Degradation of DVL</td>
+<td align="right">0.0032258</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5817290</td>
+<td align="right">-1.736932</td>
+<td align="right">1</td>
+<td align="right">45</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Hedgehog ligand biogenesis</td>
+<td align="right">0.0030912</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5568056</td>
+<td align="right">-1.696631</td>
+<td align="right">1</td>
+<td align="right">49</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Signaling by Hedgehog</td>
+<td align="right">0.0171184</td>
+<td align="right">0.1554630</td>
+<td align="right">-0.4195687</td>
+<td align="right">-1.393071</td>
+<td align="right">11</td>
+<td align="right">88</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Dectin-1 mediated noncanonical NF-kB signaling</td>
+<td align="right">0.0031546</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5547900</td>
+<td align="right">-1.681930</td>
+<td align="right">1</td>
+<td align="right">48</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: CLEC7A (Dectin-1) signaling</td>
+<td align="right">0.0058565</td>
+<td align="right">0.0704253</td>
+<td align="right">-0.4680690</td>
+<td align="right">-1.505267</td>
+<td align="right">3</td>
+<td align="right">70</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Degradation of GLI1 by the proteasome</td>
+<td align="right">0.0080128</td>
+<td align="right">0.0880421</td>
+<td align="right">-0.5267978</td>
+<td align="right">-1.583706</td>
+<td align="right">4</td>
+<td align="right">46</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: GLI3 is processed to GLI3R by the proteasome</td>
+<td align="right">0.0112179</td>
+<td align="right">0.1147583</td>
+<td align="right">-0.5145119</td>
+<td align="right">-1.546771</td>
+<td align="right">6</td>
+<td align="right">46</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Hedgehog ‘on’ state</td>
+<td align="right">0.0105581</td>
+<td align="right">0.1092637</td>
+<td align="right">-0.4860569</td>
+<td align="right">-1.529147</td>
+<td align="right">6</td>
+<td align="right">61</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: TNFR2 non-canonical NF-kB pathway</td>
+<td align="right">0.0043988</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.4828477</td>
+<td align="right">-1.563293</td>
+<td align="right">2</td>
+<td align="right">74</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: NIK–&gt;noncanonical NF-kB signaling</td>
+<td align="right">0.0031546</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5547900</td>
+<td align="right">-1.681930</td>
+<td align="right">1</td>
+<td align="right">48</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: MAPK6/MAPK4 signaling</td>
+<td align="right">0.0076220</td>
+<td align="right">0.0858676</td>
+<td align="right">-0.5017151</td>
+<td align="right">-1.565773</td>
+<td align="right">4</td>
+<td align="right">57</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: UCH proteinases</td>
+<td align="right">0.0120664</td>
+<td align="right">0.1193229</td>
+<td align="right">-0.4852362</td>
+<td align="right">-1.526565</td>
+<td align="right">7</td>
+<td align="right">61</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: PTEN Regulation</td>
+<td align="right">0.0014265</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.4847963</td>
+<td align="right">-1.609643</td>
+<td align="right">0</td>
+<td align="right">88</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Assembly of the pre-replicative complex</td>
+<td align="right">0.0325077</td>
+<td align="right">0.1954857</td>
+<td align="right">-0.4601011</td>
+<td align="right">-1.429685</td>
+<td align="right">20</td>
+<td align="right">56</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Orc1 removal from chromatin</td>
+<td align="right">0.0289193</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.4573228</td>
+<td align="right">-1.429446</td>
+<td align="right">18</td>
+<td align="right">58</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: DNA Replication Pre-Initiation</td>
+<td align="right">0.0219619</td>
+<td align="right">0.1754040</td>
+<td align="right">-0.4401229</td>
+<td align="right">-1.415395</td>
+<td align="right">14</td>
+<td align="right">70</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: CDK-mediated phosphorylation and removal of Cdc6</td>
+<td align="right">0.0045524</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.5204672</td>
+<td align="right">-1.629478</td>
+<td align="right">2</td>
+<td align="right">59</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Switching of origins to a post-replicative state</td>
+<td align="right">0.0043860</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.4711737</td>
+<td align="right">-1.520900</td>
+<td align="right">2</td>
+<td align="right">72</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Synthesis of DNA</td>
+<td align="right">0.0244957</td>
+<td align="right">0.1772451</td>
+<td align="right">-0.4157927</td>
+<td align="right">-1.386445</td>
+<td align="right">16</td>
+<td align="right">93</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: DNA Replication</td>
+<td align="right">0.0174927</td>
+<td align="right">0.1557500</td>
+<td align="right">-0.4145069</td>
+<td align="right">-1.390803</td>
+<td align="right">11</td>
+<td align="right">100</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Stabilization of p53</td>
+<td align="right">0.0047847</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.5510792</td>
+<td align="right">-1.663328</td>
+<td align="right">2</td>
+<td align="right">47</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: p53-Dependent G1 DNA Damage Response</td>
+<td align="right">0.0030769</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5296859</td>
+<td align="right">-1.644503</td>
+<td align="right">1</td>
+<td align="right">55</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: p53-Dependent G1/S DNA damage checkpoint</td>
+<td align="right">0.0030769</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5296859</td>
+<td align="right">-1.644503</td>
+<td align="right">1</td>
+<td align="right">55</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: G1/S DNA Damage Checkpoints</td>
+<td align="right">0.0243902</td>
+<td align="right">0.1772451</td>
+<td align="right">-0.4645220</td>
+<td align="right">-1.449699</td>
+<td align="right">15</td>
+<td align="right">57</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Ubiquitin-dependent degradation of Cyclin D</td>
+<td align="right">0.0162602</td>
+<td align="right">0.1491912</td>
+<td align="right">-0.5259388</td>
+<td align="right">-1.567782</td>
+<td align="right">9</td>
+<td align="right">43</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: FBXL7 down-regulates AURKA during mitotic entry and in early mitosis</td>
+<td align="right">0.0162338</td>
+<td align="right">0.1491912</td>
+<td align="right">-0.5207746</td>
+<td align="right">-1.553657</td>
+<td align="right">9</td>
+<td align="right">44</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Regulation of PTEN stability and activity</td>
+<td align="right">0.0045942</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.5261787</td>
+<td align="right">-1.631245</td>
+<td align="right">2</td>
+<td align="right">54</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Protein ubiquitination</td>
+<td align="right">0.0194489</td>
+<td align="right">0.1654429</td>
+<td align="right">-0.5263424</td>
+<td align="right">-1.549524</td>
+<td align="right">11</td>
+<td align="right">39</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Peroxisomal protein import</td>
+<td align="right">0.0016420</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.6736291</td>
+<td align="right">-1.975933</td>
+<td align="right">0</td>
+<td align="right">40</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: MHC class II antigen presentation</td>
+<td align="right">0.0264026</td>
+<td align="right">0.1853044</td>
+<td align="right">0.3827080</td>
+<td align="right">1.370319</td>
+<td align="right">7</td>
+<td align="right">83</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: G0 and Early G1</td>
+<td align="right">0.0153584</td>
+<td align="right">0.1438836</td>
+<td align="right">-0.7133826</td>
+<td align="right">-1.591870</td>
+<td align="right">8</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Citric acid cycle (TCA cycle)</td>
+<td align="right">0.0065681</td>
+<td align="right">0.0759175</td>
+<td align="right">-0.6787587</td>
+<td align="right">-1.696918</td>
+<td align="right">3</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Ovarian tumor domain proteases</td>
+<td align="right">0.0152027</td>
+<td align="right">0.1438836</td>
+<td align="right">-0.6689377</td>
+<td align="right">-1.592734</td>
+<td align="right">8</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Cytosolic sulfonation of small molecules</td>
+<td align="right">0.0238908</td>
+<td align="right">0.1771900</td>
+<td align="right">-0.7023980</td>
+<td align="right">-1.567358</td>
+<td align="right">13</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Synthesis of active ubiquitin: roles of E1 and E2 enzymes</td>
+<td align="right">0.0304487</td>
+<td align="right">0.1947974</td>
+<td align="right">-0.6018316</td>
+<td align="right">-1.532719</td>
+<td align="right">18</td>
+<td align="right">20</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Regulation of TP53 Degradation</td>
+<td align="right">0.0016260</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.6530540</td>
+<td align="right">-1.781225</td>
+<td align="right">0</td>
+<td align="right">27</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Regulation of TP53 Expression and Degradation</td>
+<td align="right">0.0016260</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.6530540</td>
+<td align="right">-1.781225</td>
+<td align="right">0</td>
+<td align="right">27</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Peroxisomal lipid metabolism</td>
+<td align="right">0.0033784</td>
+<td align="right">0.0556807</td>
+<td align="right">-0.7248431</td>
+<td align="right">-1.725844</td>
+<td align="right">1</td>
+<td align="right">16</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Amine ligand-binding receptors</td>
+<td align="right">0.0103896</td>
+<td align="right">0.1092312</td>
+<td align="right">0.6266501</td>
+<td align="right">1.746326</td>
+<td align="right">3</td>
+<td align="right">22</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Mitophagy</td>
+<td align="right">0.0224359</td>
+<td align="right">0.1754040</td>
+<td align="right">-0.6207734</td>
+<td align="right">-1.580959</td>
+<td align="right">13</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Regulation of RUNX2 expression and activity</td>
+<td align="right">0.0113636</td>
+<td align="right">0.1149277</td>
+<td align="right">-0.5280205</td>
+<td align="right">-1.575274</td>
+<td align="right">6</td>
+<td align="right">44</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Regulation of RUNX3 expression and activity</td>
+<td align="right">0.0048701</td>
+<td align="right">0.0626319</td>
+<td align="right">-0.5539295</td>
+<td align="right">-1.652571</td>
+<td align="right">2</td>
+<td align="right">44</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: SCF(Skp2)-mediated degradation of p27/p21</td>
+<td align="right">0.0062208</td>
+<td align="right">0.0728493</td>
+<td align="right">-0.5119316</td>
+<td align="right">-1.573831</td>
+<td align="right">3</td>
+<td align="right">53</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Interleukin-2 family signaling</td>
+<td align="right">0.0243902</td>
+<td align="right">0.1772451</td>
+<td align="right">-0.5597567</td>
+<td align="right">-1.553082</td>
+<td align="right">14</td>
+<td align="right">30</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: TNFs bind their physiological receptors</td>
+<td align="right">0.0202703</td>
+<td align="right">0.1686032</td>
+<td align="right">-0.6598800</td>
+<td align="right">-1.571168</td>
+<td align="right">11</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Blood group systems biosynthesis</td>
+<td align="right">0.0264423</td>
+<td align="right">0.1853044</td>
+<td align="right">0.6555660</td>
+<td align="right">1.534216</td>
+<td align="right">10</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Lewis blood group biosynthesis</td>
+<td align="right">0.0264423</td>
+<td align="right">0.1853044</td>
+<td align="right">0.6555660</td>
+<td align="right">1.534216</td>
+<td align="right">10</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Interleukin-15 signaling</td>
+<td align="right">0.0017699</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.7956604</td>
+<td align="right">-1.715421</td>
+<td align="right">0</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">Mus musculus: Autodegradation of Cdh1 by Cdh1:APC/C</td>
+<td align="right">0.0031299</td>
+<td align="right">0.0556041</td>
+<td align="right">-0.5472184</td>
+<td align="right">-1.674243</td>
+<td align="right">1</td>
+<td align="right">52</td>
+</tr>
+<tr class="even">
+<td align="left">Mus musculus: Termination of O-glycan biosynthesis</td>
+<td align="right">0.0321839</td>
+<td align="right">0.1948550</td>
+<td align="right">0.6913830</td>
+<td align="right">1.538875</td>
+<td align="right">13</td>
+<td align="right">10</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

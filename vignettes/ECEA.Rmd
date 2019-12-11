@@ -1,0 +1,113 @@
+---
+title: "ECEA"
+author: "Jeffrey Thompson"
+date: "12/10/2019"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ECEA}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+First, load the appropriate packages for your analysis. You at least need ECEA.
+
+```{r, warning=FALSE, message=FALSE}
+library(ECEA)
+library(GEOquery)
+library(mgu74av2.db)
+library(limma)
+library(fgsea)
+library(knitr)
+```
+
+The following is a simple function to map probe ids to genes.
+
+```{r}
+mouse_probes_to_symbols <- function(dat) {
+  x <- mgu74av2SYMBOL
+  mapped_probes <- mappedkeys(x)
+  xx <- as.list(x[mapped_probes])
+  
+  genes <- unlist(xx[rownames(dat)])
+  
+  common <- intersect(names(genes), rownames(dat))
+  
+  genes <- genes[common]
+  dat <- dat[common,]
+  
+  message("Aggregating...", appendLF = FALSE)
+  dat <- aggregate(dat, by=list(genes), FUN=median)
+  rownames(dat) = dat[,1]
+  dat <- dat[,-1]
+  message("done!", appendLF=TRUE)
+  
+  return(dat)
+}
+```
+
+Next, we are going to load the data from NCBI GEO. Note that these data will not have been normalized like those in the manuscript for ECEA, so the results will be very different! This example is just to show you how to run ECEA, not to recreate the analysis in that paper. We log-transform the data here, but that is not the same thing. We also map the probes to gene symbols.
+
+```{r, warning = FALSE, message = FALSE}
+gse <- getGEO('GSE35378', GSEMatrix = T)
+dat <- exprs(gse[[1]])
+dat <- log2(dat)
+dat <- mouse_probes_to_symbols(dat)
+```
+
+Next, we perform a differential expression analysis, using limma.
+
+```{r, warning = FALSE, message = FALSE}
+des <- model.matrix(~c(1,1,1,0,0,0))
+
+mod1 <- lmFit(dat[,1:6], des)
+ebmod1 <- eBayes(mod1)
+mod1tt <- topTable(ebmod1, coef=2, number=100000)
+
+mod2 <- lmFit(dat[,7:12], des)
+ebmod2 <- eBayes(mod2)
+mod2tt <- topTable(ebmod2, coef=2, number=100000)
+```
+
+Now, we extract the effect sizes (as log2-fold changes) and p-values from the diffferential expression analysis. These are necessary to construct the equivalent change index.
+
+```{r, warning = FALSE, message = FALSE}
+mod1_fc <- mod1tt$logFC
+names(mod1_fc) <- rownames(mod1tt)
+
+mod2_fc <- mod2tt$logFC
+names(mod2_fc) <- rownames(mod2tt)
+
+mod1_p <- mod1tt$P.Value
+names(mod1_p) <- rownames(mod1tt)
+
+mod2_p <- mod2tt$P.Value
+names(mod2_p) <- rownames(mod2tt)
+```
+
+We use these to calculate the ECI.
+
+```{r, warning = FALSE, message = FALSE}
+eci = getECI(mod1_fc, mod2_fc, mod1_p, mod2_p)
+```
+
+Next, we load gene sets for Reactome pathways.
+
+```{r, warning = FALSE, message = FALSE}
+reactome_sets = getReactome(species = 'mouse', progress=FALSE)
+```
+
+Then, we perform ECEA.
+
+```{r, warning = FALSE, message = FALSE}
+ecea_res = doECEA(reactome_sets, eci)
+```
+
+Finally, we show the results. Remember, these are not valid results! The data were not normalized properly.
+
+```{r, warning = FALSE, message = FALSE}
+kable(ecea_res[ecea_res$padj < .25,1:7])
+```

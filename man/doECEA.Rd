@@ -29,6 +29,13 @@ doECEA(
 
 \item{seed}{Random seed for permutation test}
 }
+\value{
+data.table with all pathways and enrichment statistics
+}
 \description{
 Performs Equivalent Change Enrichment Analysis
+}
+\examples{
+ecea_res <- doECEA(reactome_sets, eci)
+
 }

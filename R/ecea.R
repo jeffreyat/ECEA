@@ -13,6 +13,11 @@ getECI <- function(smd1, smd2, p1=NULL, p2=NULL) {
   #' @param p1 Named vector of unadjusted p-values for first treatment.
   #' @param p2 Named vector of unadjusted p-values for second treatment.
   #'
+  #' @return named vector of ECI values
+  #'
+  #' @examples
+  #' eci <- getECI(smd1, smd2, p1, p2)
+  #'
   #' @export
 
   # Find the common entries in both vectors.
@@ -70,6 +75,11 @@ doECEA <- function(gene_sets, eci, min_size=10, max_size=500, num_perm=1000, fdr
   #' @param fdr_cutoff FDR threshold for returned pathways
   #' @param seed Random seed for permutation test
   #'
+  #' @return data.table with all pathways and enrichment statistics
+  #'
+  #' @examples
+  #' ecea_res <- doECEA(reactome_sets, eci)
+  #'
   #' @export
   #'
   require(fgsea)
@@ -84,6 +94,11 @@ getReactome <- function(species = 'human', progress=TRUE) {
   #'
   #' @param species character, currently accepts 'human' or 'mouse'
   #' @param progress Boolean value indicating if progress bar should be shown.
+  #'
+  #' @return list of gene sets
+  #'
+  #' @examples
+  #' reactome_sets <- getReactome(species='mouse')
   #'
   #' @export
   #'

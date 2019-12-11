@@ -1,0 +1,16 @@
+citHeader("To cite ECEA in publications use:")
+
+citEntry(entry = "Article",
+title        = "Equivalent Change Enrichment Analysis: Assessing Equivalent and Inverse Change in Biological Pathways between Diverse Experiments",
+author       = personList(as.person("Jeffrey A. Thompson"),
+                 as.person("Devin C. Koestler")),
+journal      = "bioRxiv",
+year         = "2019",
+url          = "https://doi.org/10.1101/586875",
+
+textVersion  =
+paste("Jeffrey A. Thompson, Devin C. Koestler (2019).",
+    "Equivalent Change Enrichment Analysis: Assessing Equivalent and Inverse Change in Biological Pathways between Diverse Experiments.",
+    "bioRxiv",
+    "URL https://doi.org/10.1101/586875.")
+)

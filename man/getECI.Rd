@@ -16,6 +16,9 @@ getECI(smd1, smd2, p1 = NULL, p2 = NULL)
 
 \item{p2}{Named vector of unadjusted p-values for second treatment.}
 }
+\value{
+named vector of ECI values
+}
 \description{
 If you do not want to adjust the ECI by p-value, then
 do not pass p-values.
@@ -23,4 +26,8 @@ do not pass p-values.
 \details{
 NOTE: This function will subset the data to include only the
 entries that are in common to both vectors.
+}
+\examples{
+eci <- getECI(smd1, smd2, p1, p2)
+
 }

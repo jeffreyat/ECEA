@@ -11,6 +11,13 @@ getReactome(species = "human", progress = TRUE)
 
 \item{progress}{Boolean value indicating if progress bar should be shown.}
 }
+\value{
+list of gene sets
+}
 \description{
 Gets gene sets for use with ECEA.
+}
+\examples{
+reactome_sets <- getReactome(species='mouse')
+
 }

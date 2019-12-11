@@ -10,7 +10,7 @@ doECEA(
   min_size = 10,
   max_size = 500,
   num_perm = 1000,
-  fdr_cutoff = 0.2,
+  fdr_cutoff = 0.25,
   seed = 1
 )
 }
@@ -30,7 +30,7 @@ doECEA(
 \item{seed}{Random seed for permutation test}
 }
 \value{
-data.table with all pathways and enrichment statistics
+data.table with all pathways and enrichment statistics that are below FDR cutoff
 }
 \description{
 Performs Equivalent Change Enrichment Analysis

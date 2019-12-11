@@ -64,7 +64,7 @@ getECI <- function(smd1, smd2, p1=NULL, p2=NULL) {
   return(eci)
 }
 
-doECEA <- function(gene_sets, eci, min_size=10, max_size=500, num_perm=1000, fdr_cutoff=.2, seed=1) {
+doECEA <- function(gene_sets, eci, min_size=10, max_size=500, num_perm=1000, fdr_cutoff=.25, seed=1) {
   #' Performs Equivalent Change Enrichment Analysis
   #'
   #' @param gene_sets list of gene sets, as in fgsea
@@ -75,7 +75,7 @@ doECEA <- function(gene_sets, eci, min_size=10, max_size=500, num_perm=1000, fdr
   #' @param fdr_cutoff FDR threshold for returned pathways
   #' @param seed Random seed for permutation test
   #'
-  #' @return data.table with all pathways and enrichment statistics
+  #' @return data.table with all pathways and enrichment statistics that are below FDR cutoff
   #'
   #' @examples
   #' ecea_res <- doECEA(reactome_sets, eci)

@@ -93,7 +93,7 @@ eci = getECI(mod1_fc, mod2_fc, mod1_p, mod2_p)
 Next, we load gene sets for Reactome pathways.
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
-reactome_sets = getReactome(species = 'mouse')
+reactome_sets = getReactome(species = 'mouse', progress=FALSE)
 ```
 
 Then, we perform ECEA.

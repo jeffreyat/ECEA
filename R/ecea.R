@@ -110,7 +110,7 @@ getReactome <- function(species = 'human', progress=TRUE) {
 
   for(i in 1:length(reactome_sets_full)) {
     reactome_sets[[i]] <- as.vector(na.omit(getSYMBOL(reactome_sets_full[[i]], data=db)))
-    if(prrogress) {
+    if(progress) {
       setTxtProgressBar(pb, i)
     }
   }

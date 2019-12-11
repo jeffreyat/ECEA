@@ -4,10 +4,12 @@
 \alias{getReactome}
 \title{Gets gene sets for use with ECEA.}
 \usage{
-getReactome(species = "human")
+getReactome(species = "human", progress = TRUE)
 }
 \arguments{
-\item{species}{currently accepts 'human' or 'mouse'}
+\item{species}{character, currently accepts 'human' or 'mouse'}
+
+\item{progress}{Boolean value indicating if progress bar should be shown.}
 }
 \description{
 Gets gene sets for use with ECEA.

@@ -102,7 +102,7 @@ Then, we perform ECEA.
 ecea_res = doECEA(reactome_sets, eci)
 ```
 
-Finally, we show the results.
+Finally, we show the results. Remember, these are not valid results! The data were not normalized properly.
 
 ```{r, warning = FALSE, message = FALSE}
 kable(ecea_res[ecea_res$padj < .25,1:7])

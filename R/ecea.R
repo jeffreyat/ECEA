@@ -104,7 +104,7 @@ getReactome <- function(species = 'human', progress=TRUE) {
 
   reactome_sets_full <- as.list(reactomePATHID2EXTID)
 
-  pb <- txtProgressBar(min = 0, max = length(reactome_sets_full), style = 3)
+  if(progress) pb <- txtProgressBar(min = 0, max = length(reactome_sets_full), style = 3)
 
   reactome_sets <- list()
 
@@ -114,7 +114,8 @@ getReactome <- function(species = 'human', progress=TRUE) {
       setTxtProgressBar(pb, i)
     }
   }
-  close(pb)
+  if(progress) close(pb)
+
   names(reactome_sets) <- names(reactome_sets_full)
 
   xx = as.list(reactomePATHID2NAME)
